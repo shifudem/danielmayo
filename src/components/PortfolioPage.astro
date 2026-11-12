@@ -1,0 +1,101 @@
+---
+import "../styles/global.css";
+import { portfolio, type Lang } from "../data/portfolio-i18n";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const c = portfolio[lang];
+const base = import.meta.env.BASE_URL;
+
+const urls = {
+  en: "https://shifudem.github.io/danielmayo/",
+  es: "https://shifudem.github.io/danielmayo/es/",
+  zh: "https://shifudem.github.io/danielmayo/zh/"
+};
+const hrefs = { en: base, es: `${base}es/`, zh: `${base}zh/` };
+const labels = { en: "EN", es: "ES", zh: "中文" };
+const canonical = urls[lang];
+---
+<!doctype html>
+<html lang={c.htmlLang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content={c.meta.description} />
+  <meta name="author" content="Daniel Ernesto Mayo" />
+  <meta name="theme-color" content="#06101a" />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="en" href={urls.en} />
+  <link rel="alternate" hreflang="es-AR" href={urls.es} />
+  <link rel="alternate" hreflang="zh-CN" href={urls.zh} />
+  <link rel="alternate" hreflang="x-default" href={urls.en} />
+  <meta property="og:title" content={c.meta.title} />
+  <meta property="og:description" content={c.meta.description} />
+  <meta property="og:type" content="profile" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content={c.ogLocale} />
+  <meta property="og:image" content="https://shifudem.github.io/danielmayo/images/daniel-mayo-profile.png" />
+  <title>{c.meta.title}</title>
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#top"><span class="brand-mark">DM</span><span>Daniel Mayo</span></a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#work">{c.nav.work}</a><a href="#expertise">{c.nav.expertise}</a><a href="#experience">{c.nav.experience}</a><a href="#education">{c.nav.education}</a><a href="#contact">{c.nav.contact}</a>
+    </nav>
+    <nav class="language-switcher" aria-label="Language selector">
+      {(["en","es","zh"] as Lang[]).map(code => <a href={hrefs[code]} class:list={{ active: code === lang }} aria-current={code === lang ? "page" : undefined}>{labels[code]}</a>)}
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="status"><span></span>{c.hero.availability}</div>
+      <p class="eyebrow">{c.hero.eyebrow}</p>
+      <h1>{c.hero.title} <em>{c.hero.accent}</em></h1>
+      <p class="lead">{c.hero.lead}</p>
+      <div class="actions"><a class="btn primary" href="#work">{c.hero.work}</a><a class="btn ghost" href="mailto:mayodanielernesto@gmail.com">{c.hero.contact}</a><a class="text-link" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+      <p class="location">{c.hero.location}</p>
+    </div>
+    <aside class="portrait-panel">
+      <div class="portrait-glow"></div>
+      <img class="portrait" src={`${base}images/daniel-mayo-profile.png`} alt="Daniel Ernesto Mayo" width="400" height="400" loading="eager" fetchpriority="high" />
+      <div class="portrait-caption"><div><strong>Daniel Ernesto Mayo</strong><span>{c.hero.caption}</span></div><b>{c.hero.years}</b></div>
+    </aside>
+  </div>
+  <div class="container metrics">{c.metrics.map(([value,label]) => <div><strong>{value}</strong><span>{label}</span></div>)}</div>
+</section>
+
+<section class="section intro-section">
+  <div class="container split-head"><div><p class="eyebrow">{c.intro.eyebrow}</p><h2>{c.intro.title}</h2></div><p class="section-copy">{c.intro.body}</p></div>
+  <div class="container value-grid">{c.values.map(([n,title,body]) => <article><span>{n}</span><h3>{title}</h3><p>{body}</p></article>)}</div>
+</section>
+
+<section id="work" class="section work-section">
+  <div class="container split-head"><div><p class="eyebrow">{c.work.eyebrow}</p><h2>{c.work.title}</h2></div><p class="section-copy">{c.work.body}</p></div>
+  <div class="container project-grid">{c.projects.map((project,index) => <article class="project-card"><div class="project-topline"><span>{String(index+1).padStart(2,"0")}</span><span>{project.kicker}</span></div><h3>{project.title}</h3><p>{project.body}</p><div class="tags">{project.tags.map(tag => <span>{tag}</span>)}</div></article>)}</div>
+</section>
+
+<section id="expertise" class="section">
+  <div class="container split-head"><div><p class="eyebrow">{c.expertise.eyebrow}</p><h2>{c.expertise.title}</h2></div><p class="section-copy">{c.expertise.body}</p></div>
+  <div class="container expertise-grid">{c.skills.map(([title,body]) => <article><h3>{title}</h3><p>{body}</p></article>)}</div>
+</section>
+
+<section id="experience" class="section experience-section">
+  <div class="container split-head"><div><p class="eyebrow">{c.experience.eyebrow}</p><h2>{c.experience.title}</h2></div><p class="section-copy">{c.experience.body}</p></div>
+  <div class="container timeline">{c.roles.map(role => <article class="timeline-item"><div class="timeline-date">{role.years}</div><div><h3>{role.title}</h3><p>{role.body}</p><div class="tags">{role.stack.map(tag => <span>{tag}</span>)}</div></div></article>)}</div>
+</section>
+
+<section class="section"><div class="container science-panel"><div class="science-mark">SCIENCE × SYSTEMS</div><div><p class="eyebrow">{c.science.eyebrow}</p><h2>{c.science.title}</h2><p>{c.science.body}</p></div></div></section>
+
+<section id="education" class="section"><div class="container split-head compact"><div><p class="eyebrow">{c.education.eyebrow}</p><h2>{c.education.title}</h2></div></div><div class="container degree-grid">{c.degrees.map(([degree,school]) => <article><h3>{degree}</h3><p>{school}</p></article>)}</div></section>
+
+<section id="contact" class="section contact-section"><div class="container contact-panel"><div><p class="eyebrow">{c.contact.eyebrow}</p><h2>{c.contact.title}</h2><p>{c.contact.body}</p></div><div class="contact-actions"><a class="btn primary" href="mailto:mayodanielernesto@gmail.com">{c.contact.email}</a><a class="btn ghost" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn</a><a class="btn ghost" href="https://github.com/shifudem" target="_blank" rel="noreferrer">GitHub</a></div></div></section>
+</main>
+<footer><div class="container footer"><strong>Daniel Ernesto Mayo</strong><span>{c.footer}</span><span>© 2026</span></div></footer>
+</body>
+</html>
