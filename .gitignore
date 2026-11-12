@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Astro generated files
+dist/
+.astro/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / editors
+.DS_Store
+*.swp
+*~
