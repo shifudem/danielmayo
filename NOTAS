@@ -1,1 +1,13 @@
 
+Ya dejé preparado el portfolio completo y listo para publicar, pero **GitHub todavía está bloqueando las escrituras desde la integración**. Puedo leer tu repositorio `shifudem/shifudem`, pero al intentar crear el primer commit GitHub responde **403: “Resource not accessible by integration”**. Eso significa que la conexión actual no tiene el permiso OAuth/App necesario para escribir contenido, aunque el repositorio sea tuyo.
+
+El portfolio ya está armado con Astro, bilingüe EN/ES, diseño responsive, perfil senior, secciones de Infraestructura/Linux, DevOps, HPC, Cloud, Data/AI, experiencia, formación, idiomas, SEO, OpenGraph y workflow de GitHub Pages. También preparé el README del perfil para que tu GitHub funcione como entrada comercial hacia el portfolio.
+
+Para que yo pueda hacer el **commit + push + publicación directamente**, necesitás actualizar la autorización de GitHub en ChatGPT para que incluya **acceso de escritura a contenidos del repositorio** sobre la cuenta `shifudem`. Si GitHub te muestra una pantalla de selección de repositorios, elegí al menos:
+
+- `shifudem/shifudem`
+- y, si creamos el sitio separado después, `shifudem/shifudem.github.io`
+
+Una vez actualizado ese permiso, escribime simplemente **“ya está autorizado”**. Ahí pruebo nuevamente el commit y, si GitHub lo acepta, sigo con todo el despliegue sin que tengas que copiar archivos manualmente.
+
+Mientras tanto, el proyecto final quedó preparado aquí: Portfolio completo preparado[Portfolio completo preparado](sandbox:/mnt/data/shifudem-portfolio-final/)
