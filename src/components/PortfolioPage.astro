@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import { portfolio, type Lang } from "../data/portfolio-i18n";
 import { caseStudies, caseStudyUI } from "../data/case-studies";
+import { recruiterConversion } from "../data/recruiter-conversion";
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -18,6 +19,8 @@ const labels = { en: "EN", es: "ES", zh: "中文" };
 const canonical = urls[lang];
 const studies = caseStudies[lang];
 const caseUI = caseStudyUI[lang];
+const recruiter = recruiterConversion[lang];
+const recruiterMailto = `mailto:mayodanielernesto@gmail.com?subject=${encodeURIComponent(recruiter.mailSubject)}&body=${encodeURIComponent(recruiter.mailBody)}`;
 ---
 <!doctype html>
 <html lang={c.htmlLang}>
@@ -45,7 +48,7 @@ const caseUI = caseStudyUI[lang];
   <div class="container nav">
     <a class="brand" href="#top"><span class="brand-mark">DM</span><span>Daniel Mayo</span></a>
     <nav class="nav-links" aria-label="Primary navigation">
-      <a href="#work">{c.nav.work}</a><a href="#expertise">{c.nav.expertise}</a><a href="#experience">{c.nav.experience}</a><a href="#education">{c.nav.education}</a><a href="#contact">{c.nav.contact}</a>
+      <a href="#work">{c.nav.work}</a><a href="#expertise">{c.nav.expertise}</a><a href="#experience">{c.nav.experience}</a><a href="#education">{c.nav.education}</a><a href="#recruiter">{recruiter.nav}</a><a href="#contact">{c.nav.contact}</a>
     </nav>
     <nav class="language-switcher" aria-label="Language selector">
       {(["en","es","zh"] as Lang[]).map(code => <a href={hrefs[code]} class:list={{ active: code === lang }} aria-current={code === lang ? "page" : undefined}>{labels[code]}</a>)}
@@ -61,7 +64,7 @@ const caseUI = caseStudyUI[lang];
       <p class="eyebrow">{c.hero.eyebrow}</p>
       <h1>{c.hero.title} <em>{c.hero.accent}</em></h1>
       <p class="lead">{c.hero.lead}</p>
-      <div class="actions"><a class="btn primary" href="#work">{c.hero.work}</a><a class="btn ghost" href="mailto:mayodanielernesto@gmail.com">{c.hero.contact}</a><a class="text-link" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
+      <div class="actions"><a class="btn primary" href="#work">{c.hero.work}</a><a class="btn recruiter-link" href="#recruiter">{recruiter.heroCta}</a><a class="btn ghost" href="mailto:mayodanielernesto@gmail.com">{c.hero.contact}</a><a class="text-link" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn ↗</a></div>
       <p class="location">{c.hero.location}</p>
     </div>
     <aside class="portrait-panel">
@@ -145,6 +148,59 @@ const caseUI = caseStudyUI[lang];
 <section id="experience" class="section experience-section">
   <div class="container split-head"><div><p class="eyebrow">{c.experience.eyebrow}</p><h2>{c.experience.title}</h2></div><p class="section-copy">{c.experience.body}</p></div>
   <div class="container timeline">{c.roles.map(role => <article class="timeline-item"><div class="timeline-date">{role.years}</div><div><h3>{role.title}</h3><p>{role.body}</p><div class="tags">{role.stack.map(tag => <span>{tag}</span>)}</div></div></article>)}</div>
+</section>
+
+<section id="recruiter" class="section recruiter-section">
+  <div class="container split-head recruiter-heading">
+    <div><p class="eyebrow">{recruiter.eyebrow}</p><h2>{recruiter.title}</h2></div>
+    <p class="section-copy">{recruiter.body}</p>
+  </div>
+
+  <div class="container hire-grid">
+    {recruiter.reasons.map(([n,title,body]) => (
+      <article class="hire-reason">
+        <span>{n}</span>
+        <h3>{title}</h3>
+        <p>{body}</p>
+      </article>
+    ))}
+  </div>
+
+  <div class="container profile-heading">
+    <p class="eyebrow">{recruiter.profilesEyebrow}</p>
+    <h2>{recruiter.profilesTitle}</h2>
+    <p>{recruiter.profilesBody}</p>
+  </div>
+
+  <div class="container recruiter-profile-grid">
+    {recruiter.profiles.map(profile => (
+      <article class:list={["recruiter-profile", `profile-${profile.key}`]}>
+        <span class="profile-badge">{profile.badge}</span>
+        <h3>{profile.title}</h3>
+        <p>{profile.body}</p>
+        <div class="recruiter-role-list">
+          {profile.roles.map(role => <span>{role}</span>)}
+        </div>
+        <div class="cv-actions">
+          <a class="btn primary" href={`${base}${profile.cvEn}`} download>{recruiter.downloadEn}</a>
+          <a class="btn ghost" href={`${base}${profile.cvEs}`} download>{recruiter.downloadEs}</a>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="container recruiter-cta">
+    <div>
+      <p class="eyebrow">{recruiter.ctaEyebrow}</p>
+      <h3>{recruiter.ctaTitle}</h3>
+      <p>{recruiter.ctaBody}</p>
+      <small>{recruiter.response}</small>
+    </div>
+    <div class="recruiter-cta-actions">
+      <a class="btn primary" href={recruiterMailto}>{recruiter.email}</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">{recruiter.linkedin}</a>
+    </div>
+  </div>
 </section>
 
 <section class="section"><div class="container science-panel"><div class="science-mark">SCIENCE × SYSTEMS</div><div><p class="eyebrow">{c.science.eyebrow}</p><h2>{c.science.title}</h2><p>{c.science.body}</p></div></div></section>
