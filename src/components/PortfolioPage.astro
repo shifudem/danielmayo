@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { portfolio, type Lang } from "../data/portfolio-i18n";
+import { caseStudies, caseStudyUI } from "../data/case-studies";
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -15,6 +16,8 @@ const urls = {
 const hrefs = { en: base, es: `${base}es/`, zh: `${base}zh/` };
 const labels = { en: "EN", es: "ES", zh: "中文" };
 const canonical = urls[lang];
+const studies = caseStudies[lang];
+const caseUI = caseStudyUI[lang];
 ---
 <!doctype html>
 <html lang={c.htmlLang}>
@@ -76,8 +79,62 @@ const canonical = urls[lang];
 </section>
 
 <section id="work" class="section work-section">
-  <div class="container split-head"><div><p class="eyebrow">{c.work.eyebrow}</p><h2>{c.work.title}</h2></div><p class="section-copy">{c.work.body}</p></div>
-  <div class="container project-grid">{c.projects.map((project,index) => <article class="project-card"><div class="project-topline"><span>{String(index+1).padStart(2,"0")}</span><span>{project.kicker}</span></div><h3>{project.title}</h3><p>{project.body}</p><div class="tags">{project.tags.map(tag => <span>{tag}</span>)}</div></article>)}</div>
+  <div class="container split-head">
+    <div><p class="eyebrow">{c.work.eyebrow}</p><h2>{c.work.title}</h2></div>
+    <p class="section-copy">{c.work.body}</p>
+  </div>
+
+  <div class="container case-study-grid">
+    {studies.map((study,index) => (
+      <article class:list={["case-study-card", { featured: study.featured }]}>
+        <div class="case-study-topline">
+          <div class="case-study-id">
+            <span>{String(index+1).padStart(2,"0")}</span>
+            <span>{study.kicker}</span>
+          </div>
+          <span class:list={["case-study-type", { public: Boolean(study.repoUrl) }]}>
+            {study.repoUrl ? caseUI.public : caseUI.operational}
+          </span>
+        </div>
+
+        <h3>{study.title}</h3>
+        <p class="case-study-summary">{study.summary}</p>
+
+        <div class="case-flow">
+          <div>
+            <span class="case-label">{caseUI.problem}</span>
+            <p>{study.problem}</p>
+          </div>
+          <div>
+            <span class="case-label">{caseUI.architecture}</span>
+            <p>{study.architecture}</p>
+          </div>
+          <div>
+            <span class="case-label">{caseUI.role}</span>
+            <p>{study.role}</p>
+          </div>
+          <div>
+            <span class="case-label">{caseUI.result}</span>
+            <p>{study.result}</p>
+          </div>
+        </div>
+
+        <div class="case-study-footer">
+          <div class="tags">{study.tags.map(tag => <span>{tag}</span>)}</div>
+          {study.repoUrl && (
+            <a class="repo-link" href={study.repoUrl} target="_blank" rel="noreferrer">
+              {caseUI.viewRepo} ↗
+            </a>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="container github-note">
+    <p>{caseUI.githubNote}</p>
+    <a href="https://github.com/shifudem" target="_blank" rel="noreferrer">{caseUI.githubCta} ↗</a>
+  </div>
 </section>
 
 <section id="expertise" class="section">
