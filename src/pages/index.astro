@@ -1,67 +1,91 @@
 ---
 import "../styles/global.css";
+const base = import.meta.env.BASE_URL;
+
+const impact = [
+  {
+    kicker: "HPC · LINUX · RESEARCH",
+    title: "Scientific computing infrastructure",
+    body: "Administered Linux infrastructure and research workloads at Universidad Nacional de Cordoba, including HPC clusters, Slurm scheduling and JupyterHub environments.",
+    tags: ["Linux", "HPC", "Slurm", "JupyterHub"]
+  },
+  {
+    kicker: "INFRASTRUCTURE · AUTOMATION",
+    title: "Production systems and operations",
+    body: "Designed and supported physical and virtual infrastructure, networking and automation for corporate environments, including work associated with INVAP, Banco de Cordoba, Tarjeta Naranja and Grupo Edisur.",
+    tags: ["Proxmox", "VMware", "Python", "Networking"]
+  },
+  {
+    kicker: "DATA · AI · MLOPS",
+    title: "Modernization through automation and AI",
+    body: "Combine Python, data science and AI training with an infrastructure-first mindset to build reproducible workflows and evolve toward RAG, agentic systems, MLOps and AIOps.",
+    tags: ["Python", "Data Science", "RAG", "MLOps"]
+  }
+];
 
 const skills = [
-  ["Linux & Infrastructure", "RHEL, CentOS, Ubuntu, Windows Server, hardening, high availability, storage and production operations."],
+  ["Linux & Systems", "RHEL, CentOS, Ubuntu, Windows Server, hardening, storage, high availability."],
   ["Virtualization", "Proxmox, VMware, XenServer and remote desktop environments."],
-  ["Automation", "Python, Bash, Git, operational scripting and reproducible workflows."],
-  ["Containers & Delivery", "Docker, Docker Compose, Nginx, service networking and deployment workflows."],
-  ["HPC & Scientific Computing", "Slurm, JupyterHub, cluster administration and scientific workloads."],
-  ["Networking", "TCP/IP, routing, DNS, wireless networks, reverse proxies and Cisco fundamentals."],
-  ["Cloud & Platform", "AWS, Azure, Google Cloud, CI/CD, Terraform, Kubernetes and GitHub Actions."],
-  ["Data & AI", "Data Science, Machine Learning, SQL, PostgreSQL, MongoDB, RAG, Agentic AI and MLflow."],
-  ["Scientific / Industrial", "Physical chemistry, DFT, molecular modeling, process analytics, instrumentation and industrial systems."]
+  ["Automation", "Python, Bash, Git and repeatable operational workflows."],
+  ["Containers & Delivery", "Docker, Docker Compose, Nginx, service networking and CI/CD."],
+  ["HPC", "Slurm, JupyterHub, cluster administration and scientific workloads."],
+  ["Networking", "TCP/IP, routing, DNS, wireless, reverse proxies and Cisco fundamentals."],
+  ["Cloud & Platform", "AWS, Azure, GCP, Terraform, Kubernetes and GitHub Actions."],
+  ["Data & AI", "Data Science, Machine Learning, SQL, PostgreSQL, MongoDB, RAG and MLflow."],
+  ["Scientific Computing", "Physical chemistry, DFT, molecular modeling and computational analysis."]
 ];
 
 const experience = [
   {
-    years: "2008-2024",
+    years: "2008–2024",
     title: "Independent Infrastructure IT & Automation Consultant",
-    body: "Designed, deployed and supported Linux/Windows infrastructure, virtualization, networking, automation and data-processing solutions for corporate environments. Worked with organizations including INVAP, Banco de Cordoba, Tarjeta Naranja and Grupo Edisur.",
-    stack: ["Linux", "Python", "Proxmox", "VMware", "Docker", "Networking", "Automation"]
+    body: "Designed, deployed and supported Linux/Windows infrastructure, virtualization, networking and automation for corporate and SMB environments.",
+    stack: ["Linux", "Python", "Proxmox", "VMware", "Docker", "Networking"]
   },
   {
-    years: "UNC - until 2016",
-    title: "Linux Server Administrator - HPC Infrastructure",
-    body: "Administered Linux services and scientific-computing infrastructure at Universidad Nacional de Cordoba, including HPC clusters, Slurm workload management and JupyterHub environments.",
-    stack: ["Linux", "HPC", "Slurm", "JupyterHub", "Scientific Computing"]
+    years: "UNC · until 2016",
+    title: "Linux Server Administrator · HPC Infrastructure",
+    body: "Administered Linux services and scientific-computing infrastructure, including HPC clusters, Slurm workloads and JupyterHub.",
+    stack: ["Linux", "HPC", "Slurm", "JupyterHub"]
   },
   {
     years: "2024",
-    title: "Lecturer - Python Applied to Chemistry",
-    body: "Designed and delivered Python content for scientific data processing, automation and computational modeling, supporting professionals and students.",
-    stack: ["Python", "Teaching", "Scientific Data", "Automation"]
+    title: "Lecturer · Python Applied to Chemistry",
+    body: "Designed and delivered Python content for scientific data processing, automation and computational modeling.",
+    stack: ["Python", "Scientific Data", "Teaching", "Automation"]
   }
 ];
 
 const education = [
-  "BSc in Chemistry - Physical Chemistry - Universidad Nacional de Cordoba",
-  "University Diploma in Data Science, Artificial Intelligence and Applications - Universidad Nacional de Cordoba",
-  "Higher Technician in Mechatronics - Universidad Tecnologica Nacional",
-  "Linux Server Administrator - Universidad Nacional de Cordoba"
+  ["BSc in Chemistry — Physical Chemistry", "Universidad Nacional de Cordoba"],
+  ["Diploma in Data Science, Artificial Intelligence and Applications", "Universidad Nacional de Cordoba"],
+  ["Higher Technician in Mechatronics", "Universidad Tecnologica Nacional"],
+  ["Linux Server Administrator", "Universidad Nacional de Cordoba"]
 ];
 ---
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="description" content="Daniel Ernesto Mayo - Senior Infrastructure & Linux Engineer, DevOps, Automation, HPC, Cloud, MLOps and Scientific Computing." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Daniel Ernesto Mayo — Senior Infrastructure & Linux Engineer with 15+ years in Linux, virtualization, networking, automation, HPC, Python, DevOps, Cloud and MLOps." />
   <meta name="author" content="Daniel Ernesto Mayo" />
-  <meta property="og:title" content="Daniel Ernesto Mayo - Senior Infrastructure & Linux Engineer" />
-  <meta property="og:description" content="15+ years in Linux infrastructure, automation, HPC, DevOps, Cloud, Data and AI." />
-  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#06101a" />
+  <meta property="og:title" content="Daniel Ernesto Mayo — Senior Infrastructure & Linux Engineer" />
+  <meta property="og:description" content="15+ years across infrastructure, Linux, automation, HPC, Cloud, DevOps and AI." />
+  <meta property="og:type" content="profile" />
   <meta property="og:url" content="https://shifudem.github.io/danielmayo/" />
-  <title>Daniel Ernesto Mayo - Senior Infrastructure & Linux Engineer</title>
+  <meta property="og:image" content="https://shifudem.github.io/danielmayo/images/daniel-mayo-profile.png" />
+  <title>Daniel Ernesto Mayo | Senior Infrastructure & Linux Engineer</title>
 </head>
 <body>
-  <header>
+  <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="#top">Daniel Mayo</a>
-      <nav class="nav-links" aria-label="Primary">
+      <a class="brand" href="#top"><span class="brand-mark">DM</span><span>Daniel Mayo</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#work">Selected work</a>
         <a href="#expertise">Expertise</a>
         <a href="#experience">Experience</a>
-        <a href="#science">Science</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -70,103 +94,115 @@ const education = [
 
   <main id="top">
     <section class="hero">
-      <div class="container">
-        <div class="eyebrow">Senior multidisciplinary technology profile</div>
-        <h1>Infrastructure.<br/>Automation.<br/>Science & AI.</h1>
-        <p class="lead">
-          Senior Infrastructure & Linux Engineer with 15+ years of experience in production systems,
-          virtualization, networking, automation and scientific computing - evolving that foundation
-          into modern DevOps, Cloud, MLOps and AI infrastructure.
-        </p>
-        <div class="hero-actions">
-          <a class="btn primary" href="mailto:mayodanielernesto@gmail.com">Hire / Contact me</a>
-          <a class="btn" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn" href="https://github.com/shifudem" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
-        <div class="badges">
-          <span class="badge">Linux</span><span class="badge">Python</span><span class="badge">HPC</span>
-          <span class="badge">Docker</span><span class="badge">Proxmox</span><span class="badge">DevOps</span>
-          <span class="badge">Cloud</span><span class="badge">MLOps</span><span class="badge">Data & AI</span>
-          <span class="badge">Scientific Computing</span>
-        </div>
-        <p class="lang-note">Cordoba, Argentina - Spanish - English B2/C1 - Portuguese - Mandarin Chinese HSK4</p>
-      </div>
-    </section>
-
-    <section id="expertise">
-      <div class="container">
-        <div class="section-head">
-          <div><div class="eyebrow">Core expertise</div><h2>Senior where experience matters.</h2></div>
-          <p>My profile is built on deep operational experience in Linux infrastructure, systems administration, virtualization, networking and automation. Cloud, platform engineering and AI are the modern extension of that foundation - not a career restart.</p>
-        </div>
-        <div class="grid">
-          {skills.map(([title, body]) => <article class="card"><h3>{title}</h3><p>{body}</p></article>)}
-        </div>
-      </div>
-    </section>
-
-    <section id="experience">
-      <div class="container">
-        <div class="section-head">
-          <div><div class="eyebrow">Experience</div><h2>15+ years operating real systems.</h2></div>
-          <p>From corporate infrastructure and automation to university HPC and scientific workloads, my career has consistently combined reliability, troubleshooting, engineering and hands-on delivery.</p>
-        </div>
-        <div class="timeline">
-          {experience.map(item => (
-            <article class="timeline-item">
-              <div class="timeline-meta">{item.years}</div>
-              <div><h3>{item.title}</h3><p>{item.body}</p><div class="stack">{item.stack.map(tag => <span>{tag}</span>)}</div></div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section id="science">
-      <div class="container">
-        <div class="section-head">
-          <div><div class="eyebrow">Scientific & industrial profile</div><h2>Technology with a scientific foundation.</h2></div>
-          <p>I hold a degree in Chemistry with a Physical Chemistry orientation and training in computational chemistry, molecular modeling, DFT, quantum dynamics and scientific data analysis. My Mechatronics background adds an industrial and instrumentation perspective.</p>
-        </div>
-        <div class="highlight"><p class="quote">I am especially valuable where infrastructure, software, scientific computing, industrial systems and AI need to work together - HPC, process analytics, mining technology, laboratory digitalization, data/AI infrastructure, automation and MLOps.</p></div>
-      </div>
-    </section>
-
-    <section id="education">
-      <div class="container">
-        <div class="section-head">
-          <div><div class="eyebrow">Education</div><h2>Cross-disciplinary by design.</h2></div>
-          <p>My background combines systems, engineering, science and data. That mix lets me communicate across infrastructure, software, research and operations teams.</p>
-        </div>
-        <div class="grid">{education.map(item => <article class="card"><h3>{item}</h3></article>)}</div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="highlight">
-          <div class="eyebrow">Open to opportunities</div>
-          <h2>Senior Infrastructure - Linux - DevOps - Platform - HPC - Automation - MLOps - AI Infrastructure</h2>
-          <p>Interested in senior and lead-track roles where deep infrastructure experience can be combined with cloud, automation, platform engineering, scientific computing and modern AI practices.</p>
-          <div class="hero-actions">
-            <a class="btn primary" href="mailto:mayodanielernesto@gmail.com">mayodanielernesto@gmail.com</a>
-            <a class="btn" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="btn" href="https://github.com/shifudem" target="_blank" rel="noreferrer">GitHub</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="status"><span></span>Open to senior and lead-track opportunities</div>
+          <p class="eyebrow">Senior Infrastructure & Linux Engineer</p>
+          <h1>I build reliable systems <em>and automate what slows them down.</em></h1>
+          <p class="lead">15+ years across Linux infrastructure, virtualization, networking, HPC and Python automation. I extend that foundation into modern DevOps, Cloud, MLOps and AI infrastructure.</p>
+          <div class="actions">
+            <a class="btn primary" href="#work">View selected work</a>
+            <a class="btn ghost" href="mailto:mayodanielernesto@gmail.com">Contact me</a>
+            <a class="text-link" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
           </div>
+          <p class="location">Cordoba, Argentina · Remote / International</p>
         </div>
+
+        <aside class="portrait-panel">
+          <div class="portrait-glow"></div>
+          <img class="portrait" src={`${base}images/daniel-mayo-profile.png`} alt="Daniel Ernesto Mayo" width="400" height="400" loading="eager" fetchpriority="high" />
+          <div class="portrait-caption">
+            <div><strong>Daniel Ernesto Mayo</strong><span>Infrastructure · Linux · Automation · HPC</span></div>
+            <b>15+ YEARS</b>
+          </div>
+        </aside>
+      </div>
+
+      <div class="container metrics">
+        <div><strong>15+</strong><span>years in infrastructure</span></div>
+        <div><strong>Linux + HPC</strong><span>production & scientific systems</span></div>
+        <div><strong>Python</strong><span>automation & data workflows</span></div>
+        <div><strong>4 languages</strong><span>ES · EN · PT · ZH</span></div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <div><div class="eyebrow">Espanol</div><h2>Perfil profesional</h2></div>
-          <p>Ingeniero de Infraestructura y Linux de perfil senior, con mas de 15 anos de experiencia en sistemas, virtualizacion, redes, automatizacion, Python y computo cientifico. Integro esa base con DevOps, Cloud, MLOps, Ciencia de Datos e Inteligencia Artificial. Formacion adicional en Quimica, Fisicoquimica, Mecatronica y HPC.</p>
-        </div>
+    <section class="section intro-section">
+      <div class="container split-head">
+        <div><p class="eyebrow">What I bring</p><h2>A senior operator with a multidisciplinary edge.</h2></div>
+        <p class="section-copy">My career combines hands-on infrastructure engineering with scientific computing, automation, data and industrial thinking. I am strongest where systems must be dependable, understandable and easier to operate.</p>
+      </div>
+      <div class="container value-grid">
+        <article><span>01</span><h3>Operate critical infrastructure</h3><p>Linux administration, virtualization, networking, hardening, availability and troubleshooting.</p></article>
+        <article><span>02</span><h3>Automate operations</h3><p>Python and Bash automation, repeatable workflows, containerized services and deployment practices.</p></article>
+        <article><span>03</span><h3>Run scientific computing</h3><p>HPC infrastructure, Slurm workload management and JupyterHub environments.</p></article>
+        <article><span>04</span><h3>Bridge infrastructure with AI</h3><p>Data Science and AI training combined with RAG, agentic AI and MLOps concepts.</p></article>
+      </div>
+    </section>
+
+    <section id="work" class="section work-section">
+      <div class="container split-head">
+        <div><p class="eyebrow">Selected work</p><h2>Representative systems and impact.</h2></div>
+        <p class="section-copy">Not every project is public source code. These cases summarize the kinds of environments I have built, operated and supported.</p>
+      </div>
+      <div class="container project-grid">
+        {impact.map((project, index) => (
+          <article class="project-card">
+            <div class="project-topline"><span>{String(index + 1).padStart(2, "0")}</span><span>{project.kicker}</span></div>
+            <h3>{project.title}</h3>
+            <p>{project.body}</p>
+            <div class="tags">{project.tags.map(tag => <span>{tag}</span>)}</div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section id="expertise" class="section">
+      <div class="container split-head">
+        <div><p class="eyebrow">Expertise</p><h2>Depth first. Modernization second.</h2></div>
+        <p class="section-copy">The senior core is infrastructure, Linux, virtualization, networking, automation and HPC. Cloud-native and AI practices are an extension of that experience, not a career reset.</p>
+      </div>
+      <div class="container expertise-grid">
+        {skills.map(([title, body]) => <article><h3>{title}</h3><p>{body}</p></article>)}
+      </div>
+    </section>
+
+    <section id="experience" class="section experience-section">
+      <div class="container split-head">
+        <div><p class="eyebrow">Experience</p><h2>15+ years of hands-on delivery.</h2></div>
+        <p class="section-copy">A career built around keeping systems running, solving operational problems and progressively adding automation, data and scientific computing.</p>
+      </div>
+      <div class="container timeline">
+        {experience.map(role => (
+          <article class="timeline-item">
+            <div class="timeline-date">{role.years}</div>
+            <div><h3>{role.title}</h3><p>{role.body}</p><div class="tags">{role.stack.map(tag => <span>{tag}</span>)}</div></div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container science-panel">
+        <div class="science-mark">SCIENCE × SYSTEMS</div>
+        <div><p class="eyebrow">Scientific & industrial edge</p><h2>Technology backed by science and engineering.</h2><p>BSc in Chemistry with a Physical Chemistry orientation, training in computational chemistry, molecular modeling, DFT and quantum dynamics, plus a Mechatronics background. This combination is valuable in HPC, mining, laboratories, industrial digitalization, process analytics and scientific software.</p></div>
+      </div>
+    </section>
+
+    <section id="education" class="section">
+      <div class="container split-head compact"><div><p class="eyebrow">Education</p><h2>Cross-disciplinary by design.</h2></div></div>
+      <div class="container degree-grid">
+        {education.map(([degree, school]) => <article><h3>{degree}</h3><p>{school}</p></article>)}
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="container contact-panel">
+        <div><p class="eyebrow">Open to opportunities</p><h2>Senior roles where infrastructure meets automation, cloud, HPC or AI.</h2><p>Infrastructure Engineering · Linux · DevOps · Platform Engineering · Automation · HPC · MLOps · AIOps · Data/AI Infrastructure · Scientific Computing</p></div>
+        <div class="contact-actions"><a class="btn primary" href="mailto:mayodanielernesto@gmail.com">Email me</a><a class="btn ghost" href="https://www.linkedin.com/in/jiaodem/" target="_blank" rel="noreferrer">LinkedIn</a><a class="btn ghost" href="https://github.com/shifudem" target="_blank" rel="noreferrer">GitHub</a></div>
       </div>
     </section>
   </main>
 
-  <footer><div class="container">2026 Daniel Ernesto Mayo - Cordoba, Argentina</div></footer>
+  <footer><div class="container footer"><strong>Daniel Ernesto Mayo</strong><span>Building reliable infrastructure, automating complexity and connecting systems, data and science.</span><span>© 2026</span></div></footer>
 </body>
 </html>
