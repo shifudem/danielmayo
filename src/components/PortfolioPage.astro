@@ -4,6 +4,7 @@ import { portfolio, type Lang } from "../data/portfolio-i18n";
 import { caseStudies, caseStudyUI } from "../data/case-studies";
 import { recruiterConversion } from "../data/recruiter-conversion";
 import { githubEvidence, githubEvidenceUI } from "../data/github-evidence";
+import { githubShowcase, githubShowcaseUI } from "../data/github-showcase";
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -22,6 +23,8 @@ const studies = caseStudies[lang];
 const caseUI = caseStudyUI[lang];
 const evidence = githubEvidence[lang];
 const evidenceUI = githubEvidenceUI[lang];
+const showcase = githubShowcase[lang];
+const showcaseUI = githubShowcaseUI[lang];
 const recruiter = recruiterConversion[lang];
 const recruiterMailto = `mailto:mayodanielernesto@gmail.com?subject=${encodeURIComponent(recruiter.mailSubject)}&body=${encodeURIComponent(recruiter.mailBody)}`;
 ---
@@ -51,7 +54,7 @@ const recruiterMailto = `mailto:mayodanielernesto@gmail.com?subject=${encodeURIC
   <div class="container nav">
     <a class="brand" href="#top"><span class="brand-mark">DM</span><span>Daniel Mayo</span></a>
     <nav class="nav-links" aria-label="Primary navigation">
-      <a href="#work">{c.nav.work}</a><a href="#evidence">{evidenceUI.nav}</a><a href="#expertise">{c.nav.expertise}</a><a href="#experience">{c.nav.experience}</a><a href="#education">{c.nav.education}</a><a href="#recruiter">{recruiter.nav}</a><a href="#contact">{c.nav.contact}</a>
+      <a href="#work">{c.nav.work}</a><a href="#evidence">{evidenceUI.nav}</a><a href="#github-showcase">{showcaseUI.nav}</a><a href="#expertise">{c.nav.expertise}</a><a href="#experience">{c.nav.experience}</a><a href="#education">{c.nav.education}</a><a href="#recruiter">{recruiter.nav}</a><a href="#contact">{c.nav.contact}</a>
     </nav>
     <nav class="language-switcher" aria-label="Language selector">
       {(["en","es","zh"] as Lang[]).map(code => <a href={hrefs[code]} class:list={{ active: code === lang }} aria-current={code === lang ? "page" : undefined}>{labels[code]}</a>)}
@@ -208,6 +211,80 @@ const recruiterMailto = `mailto:mayodanielernesto@gmail.com?subject=${encodeURIC
   <div class="container evidence-note">
     <span>VERIFY</span>
     <p>{evidenceUI.note}</p>
+  </div>
+</section>
+
+<section id="github-showcase" class="section github-showcase-section">
+  <div class="container split-head">
+    <div>
+      <p class="eyebrow">{showcaseUI.eyebrow}</p>
+      <h2>{showcaseUI.title}</h2>
+    </div>
+    <p class="section-copy">{showcaseUI.body}</p>
+  </div>
+
+  <div class="container github-showcase-grid">
+    {showcase.map((repo,index) => (
+      <article class="github-repo-card">
+        <div class="github-repo-head">
+          <div>
+            <span class="repo-index">{String(index + 1).padStart(2, "0")}</span>
+            <span class="github-word">GITHUB</span>
+          </div>
+          <span class="repo-status">{repo.status}</span>
+        </div>
+
+        <h3>{repo.title}</h3>
+        <a class="github-repo-name" href={repo.repoUrl} target="_blank" rel="noreferrer">
+          {repo.repo} ↗
+        </a>
+        <p class="github-repo-summary">{repo.summary}</p>
+
+        <div class="repo-stack-block">
+          <span>{showcaseUI.stack}</span>
+          <div class="repo-stack">
+            {repo.stack.map(item => <b>{item}</b>)}
+          </div>
+        </div>
+
+        <div class="code-demo">
+          <div class="code-demo-head">
+            <span>{showcaseUI.code}</span>
+            <code>{repo.codeTitle}</code>
+          </div>
+          <pre><code>{repo.code}</code></pre>
+        </div>
+
+        <div class="module-list">
+          <span class="module-list-title">{showcaseUI.modules}</span>
+          {repo.links.map(link => (
+            <a class="module-row" href={link.url} target="_blank" rel="noreferrer">
+              <span>
+                <strong>{link.label}</strong>
+                <small>{link.note}</small>
+              </span>
+              <b aria-hidden="true">↗</b>
+            </a>
+          ))}
+        </div>
+
+        <div class="github-repo-actions">
+          <a class="btn primary" href={repo.repoUrl} target="_blank" rel="noreferrer">
+            {showcaseUI.source} ↗
+          </a>
+          {repo.liveUrl && (
+            <a class="btn ghost" href={repo.liveUrl} target="_blank" rel="noreferrer">
+              {showcaseUI.live} ↗
+            </a>
+          )}
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="container github-showcase-note">
+    <span>PUBLIC CODE</span>
+    <p>{showcaseUI.note}</p>
   </div>
 </section>
 
